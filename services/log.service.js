@@ -13,7 +13,7 @@ const printHelp = () => {
 	console.log(dedent`${chalk.white.bgYellow(' HELP ')}
 							Without parameters - show weather
 							-h show help
-							-s [CITY] set city
+							-c [CITY] set city
 							-t [TOKEN] set token`);
 };
 
