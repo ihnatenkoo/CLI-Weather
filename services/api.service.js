@@ -4,6 +4,7 @@ import { getKeyValue, TOKEN_DICTIONARY } from './storage.service.js';
 const getWeather = async () => {
 	const token = await getKeyValue(TOKEN_DICTIONARY.token);
 	const city = await getKeyValue(TOKEN_DICTIONARY.city);
+
 	if (!token) {
 		throw new Error(
 			'The Token is not set, set it using the command -t [API_KEY]'

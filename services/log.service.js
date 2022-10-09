@@ -17,4 +17,17 @@ const printHelp = () => {
 							-t [TOKEN] set token`);
 };
 
-export { printError, printSuccess, printHelp };
+const printWeather = (res) => {
+	if (res.sys.country === 'RU') {
+		console.log('Русский военный корабль иди нахуй');
+	} else {
+		console.log(dedent`${chalk.bgBlue(' WEATHER ')}
+											City: ${res.name} ${res.sys.country}
+											${res.weather[0].main}, ${res.weather[0].description}
+											Temperature: ${res.main.temp}c
+											Feels like: ${res.main.feels_like}c
+											Wind: ${res.wind.speed}m`);
+	}
+};
+
+export { printWeather, printError, printSuccess, printHelp };

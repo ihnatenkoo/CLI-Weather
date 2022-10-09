@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 import { getArgs } from './helpers/args.js';
-import { printError, printHelp } from './services/log.service.js';
+import { printWeather, printError, printHelp } from './services/log.service.js';
 import { saveToken, saveCity } from './services/storage.service.js';
 import { getWeather } from './services/api.service.js';
 
 const getForcast = async () => {
 	try {
 		const weather = await getWeather();
-		console.log(weather);
+		printWeather(weather);
 	} catch (e) {
 		if (e?.response?.status === 404) {
 			printError('Wrong city, set it using the command -c [CITY]');
