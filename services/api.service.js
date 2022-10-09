@@ -1,12 +1,16 @@
 import axios from 'axios';
 import { getKeyValue, TOKEN_DICTIONARY } from './storage.service.js';
 
-const getWeather = async (city) => {
+const getWeather = async () => {
 	const token = await getKeyValue(TOKEN_DICTIONARY.token);
+	const city = await getKeyValue(TOKEN_DICTIONARY.city);
 	if (!token) {
 		throw new Error(
-			'The API_KEY is not set, set it using the command -t [API_KEY]'
+			'The Token is not set, set it using the command -t [API_KEY]'
 		);
+	}
+	if (!city) {
+		throw new Error('The City is not set, set it using the command -c [CITY]');
 	}
 
 	const { data } = await axios.get(

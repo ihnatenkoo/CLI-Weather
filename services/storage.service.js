@@ -1,6 +1,7 @@
 import { homedir } from 'os';
 import { promises } from 'fs';
 import { join } from 'path';
+import { printError, printSuccess } from './log.service.js';
 
 const TOKEN_DICTIONARY = {
 	token: 'token',
@@ -42,4 +43,32 @@ const isExist = async (path) => {
 	}
 };
 
-export { saveKeyValue, getKeyValue, TOKEN_DICTIONARY };
+const saveToken = async (token) => {
+	if (!token.length) {
+		printError(' No token passed');
+		return;
+	}
+
+	try {
+		await saveKeyValue(TOKEN_DICTIONARY.token, token);
+		printSuccess(' Token saved');
+	} catch (e) {
+		printError(e.message);
+	}
+};
+
+const saveCity = async (city) => {
+	if (!city.length) {
+		printError(' No city passed');
+		return;
+	}
+
+	try {
+		await saveKeyValue(TOKEN_DICTIONARY.city, city);
+		printSuccess(' City saved');
+	} catch (e) {
+		printError(e.message);
+	}
+};
+
+export { saveKeyValue, getKeyValue, TOKEN_DICTIONARY, saveToken, saveCity };
