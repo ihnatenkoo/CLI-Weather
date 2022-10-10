@@ -13,6 +13,7 @@ const printHelp = () => {
 	console.log(dedent`${chalk.white.bgYellow(' HELP ')}
 							Without parameters - show weather
 							-h show help
+							-p show params
 							-c [CITY] set city
 							-t [TOKEN] set token`);
 };
@@ -30,4 +31,9 @@ const printWeather = (res) => {
 	}
 };
 
-export { printWeather, printError, printSuccess, printHelp };
+const printParams = (token, city) => {
+	console.log(dedent`${chalk.bold.bgGreen('TOKEN:')} ${token}
+											${chalk.bold.bgGreen('CITY:')} ${city}`);
+};
+
+export { printWeather, printError, printSuccess, printHelp, printParams };

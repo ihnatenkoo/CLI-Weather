@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { getArgs } from './helpers/args.js';
 import { printWeather, printError, printHelp } from './services/log.service.js';
-import { saveToken, saveCity } from './services/storage.service.js';
+import { saveToken, saveCity, getParams } from './services/storage.service.js';
 import { getWeather } from './services/api.service.js';
 
 const getForcast = async () => {
@@ -23,13 +23,16 @@ const initCLI = async () => {
 	const args = getArgs(process.argv);
 
 	if (args.h) {
-		printHelp();
+		return printHelp();
 	}
 	if (args.c) {
-		await saveCity(args.c);
+		return await saveCity(args.c);
 	}
 	if (args.t) {
-		await saveToken(args.t);
+		return await saveToken(args.t);
+	}
+	if (args.p) {
+		return await getParams();
 	}
 
 	getForcast();
